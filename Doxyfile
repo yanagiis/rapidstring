@@ -1,6 +1,6 @@
 DOXYFILE_ENCODING      = UTF-8
 PROJECT_NAME           = rapidstring
-PROJECT_NUMBER         = 0.1.0
+PROJECT_NUMBER         = 1.0.0
 PROJECT_BRIEF          = "Maybe the fastest string library ever."
 PROJECT_LOGO           =
 OUTPUT_DIRECTORY       = docs/
