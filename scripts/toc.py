@@ -54,7 +54,7 @@ for key, value in elems.items():
 	toc += ' * - Declarations:\tline ' + str(value[0]) + '\n'
 
 	if len(value) == 2:
-		toc += ' * - Defintions:\tline ' + str(value[1]) + '\n'
+		toc += ' * - Definitions:\tline ' + str(value[1]) + '\n'
 
 	toc += ' *\n'
 
