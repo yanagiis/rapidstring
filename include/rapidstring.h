@@ -11,27 +11,27 @@
  *       TABLE OF CONTENTS
  *
  * 1. STRUCTURES & MACROS
- * - Declarations:	line 69
+ * - Declarations:	line 89
  *
  * 2. CONSTRUCTION & DESTRUCTION
- * - Declarations:	line 385
- * - Definitions:	line 1153
+ * - Declarations:	line 405
+ * - Definitions:	line 1173
  *
  * 3. COPYING
- * - Declarations:	line 491
- * - Definitions:	line 1204
+ * - Declarations:	line 511
+ * - Definitions:	line 1224
  *
  * 4. CAPACITY
- * - Declarations:	line 598
- * - Definitions:	line 1257
+ * - Declarations:	line 618
+ * - Definitions:	line 1277
  *
  * 5. MODIFIERS
- * - Declarations:	line 737
- * - Definitions:	line 1322
+ * - Declarations:	line 757
+ * - Definitions:	line 1342
  *
  * 6. HEAP OPERATIONS
- * - Declarations:	line 1046
- * - Definitions:	line 1497
+ * - Declarations:	line 1066
+ * - Definitions:	line 1517
  */
 
 /**
@@ -41,11 +41,31 @@
 
 /**
  * @mainpage rapidstring
- * The documentation of the rapidstring library is grouped by modules. All functions are within a certain module, and a list of all modules may be seen [here](https://boyerjohn.github.io/rapidstring/modules.html).
+ * The documentation of the rapidstring library is grouped by modules. All
+ * functions are within a certain module, and a list of all modules may be seen
+ * [here](https://boyerjohn.github.io/rapidstring/modules.html).
  *
- * All functions are named based off what state the string must be. For example, `rs_heap_cat_n` may only be used to concatenate strings that are on the heap. This method is intended for internal use. However, if you know for a fact your string is larger than #RS_STACK_CAPACITY, you may use the heap methods directly to avoid a flag check and obtain a minor speedup. The same is true for `rs_stack_cat_n`, and all other stack or heap specific functions. Any functions without either infix simply means it can handle the string in any state. These are the functions intended for the average user. Furthermore, the latter functions will grow the size of the string when required, while the former functions require this to be done manually.
+ * All functions are named based off what state the string must be. For example,
+ * `rs_heap_cat_n` may only be used to concatenate strings that are on the heap.
+ * This method is intended for internal use. However, if you know for a fact
+ * your string is larger than #RS_STACK_CAPACITY, you may use the heap methods
+ * directly to avoid a flag check and obtain a minor speedup. The same is true
+ * for `rs_stack_cat_n`, and all other stack or heap specific functions. Any
+ * functions without either infix simply means it can handle the string in any
+ * state. These are the functions intended for the average user. Furthermore,
+ * the latter functions will grow the size of the string when required, while
+ * the former functions require this to be done manually.
  *
- * There are no error codes returned from this library, as nothing ever fails. The only possible sources of failure are invalid arguments or a failed allocation. The former is undefined behavior (or assert failures in when `NDEBUG` is not defined) and the latter may be verified with `errno`. The simple truth is that nearly all applications brutally fail either way when memory runs out, and `rapidstring` takes advantage of this by never checking whether allocations succeed. If your application must handle allocation failures, you may set `errno` to `0` before calling a function that either intializes or grows the heap buffer, and then check `errno` after this call. All modern compilers will set `errno` if `malloc()` fails.
+ * There are no error codes returned from this library, as nothing ever fails.
+ * The only possible sources of failure are invalid arguments or a failed
+ * allocation. The former is undefined behavior (or assert failures in when
+ * `NDEBUG` is not defined) and the latter may be verified with `errno`. The
+ * simple truth is that nearly all applications brutally fail either way when
+ * memory runs out, and `rapidstring` takes advantage of this by never checking
+ * whether allocations succeed. If your application must handle allocation
+ * failures, you may set `errno` to `0` before calling a function that either
+ * intializes or grows the heap buffer, and then check `errno` after this call.
+ * All modern compilers will set `errno` if `malloc()` fails.
  *
  * @copyright Copyright © 2018 John Boyer.
  * @author <a href="https://github.com/boyerjohn">John Boyer</a>
