@@ -13,7 +13,7 @@ install:
 before_build:
   - mkdir build
   - cd build
-  - cmake .. -G "Visual Studio 15 2017 Win64" -Werror=dev
+  - cmake .. -G "Visual Studio 15 2017 Win64" -DBUILD_TESTING=1 -Werror=dev
 
 test_script:
   - cd C:\Projects\rapidstring\build\test\%CONFIGURATION%

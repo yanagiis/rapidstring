@@ -7,5 +7,9 @@ include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/utility.cmake)
 
 # TODO: Installation.
 
+if(BUILD_TESTING)
+	enable_testing()
+endif()
+
 add_subdirectory(test)
 add_subdirectory(benchmark)

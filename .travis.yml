@@ -52,7 +52,7 @@ before_install:
 - if [[ $TRAVIS_OS_NAME == osx ]]; then brew update; fi
 - eval "${MATRIX_EVAL}"
 - mkdir build && cd build
-- cmake .. -Werror=dev -DRS_COVERAGE=$COVERAGE
+- cmake .. -Werror=dev -DRS_COVERAGE=$COVERAGE -DBUILD_TESTING=1
 
 script:
 - make -j 4

@@ -141,7 +141,7 @@ git clone --recurse-submodules https://github.com/boyerjohn/rapidstring
 cd rapidstring
 mkdir build
 cd build
-cmake ..
+cmake .. -DBUILD_TESTING=1
 cmake --build .
 ```
 The build will default to debug mode. To compile in release mode, pass this flag `-DCMAKE_BUILD_TYPE=Release` to the cmake generation command. The test and benchmark executables will be in their respective folders.
