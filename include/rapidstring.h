@@ -15,23 +15,23 @@
  *
  * 2. CONSTRUCTION & DESTRUCTION
  * - Declarations:	line 385
- * - Defintions:	line 1155
+ * - Definitions:	line 1155
  *
  * 3. COPYING
  * - Declarations:	line 493
- * - Defintions:	line 1202
+ * - Definitions:	line 1202
  *
  * 4. CAPACITY
  * - Declarations:	line 600
- * - Defintions:	line 1255
+ * - Definitions:	line 1255
  *
  * 5. MODIFIERS
  * - Declarations:	line 739
- * - Defintions:	line 1320
+ * - Definitions:	line 1320
  *
  * 6. HEAP OPERATIONS
  * - Declarations:	line 1048
- * - Defintions:	line 1495
+ * - Definitions:	line 1495
  */
 
 /**
@@ -282,7 +282,7 @@ typedef struct {
 	 * The following is used to store the state of the union as well as the
 	 * remaining capacity of the stack string. They may be shared as the
 	 * capacity of a stack string will always be smaller than
-	 * #RS_HEAP_FLAG, which guarentees unambiguity between the two states.
+	 * #RS_HEAP_FLAG, which guarantees unambiguity between the two states.
 	 */
 	unsigned char flag;
 } rs_heap;
@@ -311,7 +311,7 @@ typedef struct {
 	/**
 	 * @brief Buffer of a stack string.
 	 *
-	 * An array of characters the size of #RS_STACK_CAPACITY exlcuding the
+	 * An array of characters the size of #RS_STACK_CAPACITY excluding the
 	 * null terminator.
 	 */
 	char buffer[RS_STACK_CAPACITY];
@@ -328,7 +328,7 @@ typedef struct {
  * @brief Union that stores a #rapidstring.
  *
  * Some API functions are prefixed with `rs_heap_x()` or `rs_stack_x()`. These
- * functions are to be used only when a string is guarenteed to be in either
+ * functions are to be used only when a string is guaranteed to be in either
  * state, as mismatching these functions results in undefined behavior. There
  * will always be the `rs_x()` alternative which automatically handles the state
  * of the string. These functions should be used if optimization isn't a
@@ -807,7 +807,7 @@ RS_API void rs_heap_cat_n(rapidstring *s, const char *input, size_t n);
 /**
  * @brief Concatenates characters to a string.
  *
- * @param[in,out] s An initialized  string.
+ * @param[in,out] s An initialized string.
  * @param[in] input The input to concatenate.
  *
  * @note Identicle to rs_cat_n() with `strlen()`.
@@ -824,7 +824,7 @@ RS_API void rs_cat(rapidstring *s, const char *input);
 /**
  * @brief Concatenates characters to a string.
  *
- * @param[in,out] s An initialized  string.
+ * @param[in,out] s An initialized string.
  * @param[in] input The input to concatenate.
  * @param[in] n The length of @a input.
  *
