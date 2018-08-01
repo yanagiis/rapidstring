@@ -366,7 +366,7 @@ enum { RS_HEAP_LIKELY_V = RS_AVERAGE_SIZE > RS_STACK_CAPACITY };
  */
 #define RS_DATA_SIZE(f, s, input)                                       \
 	do {                                                            \
-		if (RS_HEAP_LIKELY(rs_is_heap(input)))                  \
+		if (rs_is_heap(input))                                  \
 			f(s, input->heap.buffer, rs_heap_len(input));   \
 		else                                                    \
 			f(s, input->stack.buffer, rs_stack_len(input)); \
@@ -1189,7 +1189,7 @@ RS_API void rs_free(rapidstring *s)
 {
 	RS_ASSERT_RS(s);
 
-	if (RS_HEAP_LIKELY(rs_is_heap(s)))
+	if (rs_is_heap(s))
 		RS_FREE(s->heap.buffer);
 }
 
@@ -1230,7 +1230,7 @@ RS_API void rs_cpy(rapidstring *s, const char *input)
 
 RS_API void rs_cpy_n(rapidstring *s, const char *input, size_t n)
 {
-	if (RS_HEAP_LIKELY(rs_is_heap(s))) {
+	if (rs_is_heap(s)) {
 		rs_grow_heap(s, n);
 		rs_heap_cpy_n(s, input, n);
 	} else if (RS_HEAP_LIKELY(n > RS_STACK_CAPACITY)) {
@@ -1285,7 +1285,7 @@ RS_API size_t rs_cap(const rapidstring *s)
 
 RS_API void rs_reserve(rapidstring *s, size_t n)
 {
-	if (RS_HEAP_LIKELY(rs_is_heap(s))) {
+	if (rs_is_heap(s)) {
 		if (RS_LIKELY(s->heap.capacity < n))
 			rs_realloc(s, n);
 	} else {
@@ -1295,7 +1295,7 @@ RS_API void rs_reserve(rapidstring *s, size_t n)
 
 RS_API void rs_shrink_to_fit(rapidstring *s)
 {
-	if (RS_LIKELY(rs_is_heap(s)))
+	if (rs_is_heap(s))
 		rs_realloc(s, rs_heap_len(s));
 }
 
@@ -1303,7 +1303,7 @@ RS_API unsigned char rs_is_heap(const rapidstring *s)
 {
 	RS_ASSERT_RS(s);
 
-	return s->heap.flag == RS_HEAP_FLAG;
+	return RS_HEAP_LIKELY(s->heap.flag == RS_HEAP_FLAG);
 }
 
 RS_API unsigned char rs_is_stack(const rapidstring *s)
@@ -1361,7 +1361,7 @@ RS_API void rs_cat(rapidstring *s, const char *input)
 
 RS_API void rs_cat_n(rapidstring *s, const char *input, size_t n)
 {
-	if (RS_HEAP_LIKELY(rs_is_heap(s))) {
+	if (rs_is_heap(s)) {
 		rs_grow_heap(s, rs_heap_len(s) + n);
 		rs_heap_cat_n(s, input, n);
 	} else if (RS_HEAP_LIKELY(s->stack.left < n)) {
@@ -1419,7 +1419,7 @@ RS_API void rs_heap_erase(rapidstring *s, size_t index, size_t n)
 
 RS_API void rs_erase(rapidstring *s, size_t index, size_t n)
 {
-	if (RS_HEAP_LIKELY(rs_is_heap(s)))
+	if (rs_is_heap(s))
 		rs_heap_erase(s, index, n);
 	else
 		rs_stack_erase(s, index, n);
@@ -1437,7 +1437,7 @@ RS_API void rs_heap_clear(rapidstring *s)
 
 RS_API void rs_clear(rapidstring *s)
 {
-	if (RS_HEAP_LIKELY(rs_is_heap(s)))
+	if (rs_is_heap(s))
 		rs_heap_clear(s);
 	else
 		rs_stack_clear(s);
@@ -1463,7 +1463,7 @@ RS_API void rs_heap_resize(rapidstring *s, size_t n)
 RS_API void rs_resize(rapidstring *s, size_t n)
 {
 	if (RS_HEAP_LIKELY(n > RS_STACK_CAPACITY)) {
-		if (RS_HEAP_LIKELY(rs_is_heap(s)))
+		if (rs_is_heap(s))
 			rs_reserve(s, n);
 		else
 			rs_stack_to_heap(s, n);
