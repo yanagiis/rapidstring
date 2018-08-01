@@ -56,7 +56,7 @@
 #define RAPIDSTRING_H_962AB5F800398A34
 
 #include <assert.h> /* assert() */
-#include <string.h> /* memcpy() */
+#include <string.h> /* memcpy(),  memmove(), memset() */
 
 /*
  * ===============================================================
@@ -120,7 +120,7 @@
 #endif
 
 #if !defined(RS_MALLOC) && !defined(RS_REALLOC) && !defined(RS_FREE)
-#include <stdlib.h>
+#include <stdlib.h> /* malloc(), realloc(), free() */
 
 /**
  * @brief Allocation macro.
