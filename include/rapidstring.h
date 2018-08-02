@@ -213,6 +213,7 @@
 #define RC_C11 (0)
 #endif
 
+#ifndef RS_API
 #ifdef RS_NOINLINE
 /* GCC version 3.1 required for the no inline attribute. */
 #if RS_GCC_VERSION > 30100
@@ -230,6 +231,7 @@
 #define RS_API static __forceinline
 #else
 #define RS_API static
+#endif
 #endif
 
 typedef struct {
