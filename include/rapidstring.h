@@ -210,7 +210,7 @@
 #define RS_C11 (__STDC_VERSION__ >= 201112L)
 #else
 #define RS_C99 (0)
-#define RC_C11 (0)
+#define RS_C11 (0)
 #endif
 
 #ifndef RS_API
