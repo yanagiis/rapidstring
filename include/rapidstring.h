@@ -19,19 +19,19 @@
  *
  * 3. COPYING
  * - Declarations:	line 513
- * - Definitions:	line 1226
+ * - Definitions:	line 1222
  *
  * 4. CAPACITY
  * - Declarations:	line 620
- * - Definitions:	line 1279
+ * - Definitions:	line 1275
  *
  * 5. MODIFIERS
  * - Declarations:	line 759
- * - Definitions:	line 1344
+ * - Definitions:	line 1340
  *
  * 6. HEAP OPERATIONS
  * - Declarations:	line 1068
- * - Definitions:	line 1519
+ * - Definitions:	line 1514
  */
 
 /**
@@ -1174,8 +1174,6 @@ RS_API void rs_grow_heap(rapidstring *s, size_t n);
 
 RS_API void rs_init(rapidstring *s)
 {
-	assert(s != NULL);
-
 	rs_stack_resize(s, 0);
 }
 
@@ -1463,6 +1461,7 @@ RS_API void rs_clear(rapidstring *s)
 
 RS_API void rs_stack_resize(rapidstring *s, size_t n)
 {
+	assert(s != NULL);
 	assert(RS_STACK_CAPACITY >= n);
 
 	s->stack.buffer[n] = '\0';
