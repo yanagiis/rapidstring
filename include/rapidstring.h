@@ -1,4 +1,4 @@
-/*
+﻿/*
  * rapidstring - Maybe the fastest string library ever.
  * version 1.0.0
  * https://github.com/boyerjohn/rapidstring
@@ -1209,8 +1209,6 @@ RS_API void rs_init_w_rs(rapidstring *s, const rapidstring *input)
 
 RS_API void rs_free(rapidstring *s)
 {
-	RS_ASSERT_RS(s);
-
 	if (rs_is_heap(s))
 		RS_FREE(s->heap.buffer);
 }
@@ -1343,8 +1341,6 @@ RS_API unsigned char rs_is_stack(const rapidstring *s)
 
 RS_API char *rs_data(rapidstring *s)
 {
-	RS_ASSERT_RS(s);
-
 	return rs_is_heap(s) ? s->heap.buffer : s->stack.buffer;
 }
 

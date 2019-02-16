@@ -41,6 +41,10 @@ matrix:
       env:
         - MATRIX_EVAL="brew upgrade cmake && CXX=clang++"
 
+    - os: osx
+      env:
+        - MATRIX_EVAL="brew install gcc && brew upgrade cmake && CXX=g++"
+
 before_install:
 - git submodule update --init --recursive
 - if [[ $TRAVIS_OS_NAME == osx ]]; then brew update; fi
