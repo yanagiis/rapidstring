@@ -69,7 +69,7 @@ rs_cpy_rs(&s2, &s1);
 puts(rs_data(&s2)); /* Jiminy Cricket! */
 ```
 
-It is important to note that all strings must be initialized before any functions such as `rs_cy()` are called. Failing to do so will result in undefined behavior (or assertion failures when `NDEBUG` is not defined).
+It is important to note that all strings must be initialized before any functions such as `rs_cpy()` are called. Failing to do so will result in undefined behavior (or assertion failures when `NDEBUG` is not defined).
 
 ### Concatenation
 ```c
