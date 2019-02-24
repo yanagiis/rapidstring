@@ -145,7 +145,7 @@
 /**
  * @brief Allocation macro.
  *
- * If this macro is redefined, RS_REALLOC() and RS_FREE() must be aswell.
+ * If this macro is redefined, RS_REALLOC() and RS_FREE() must be as well.
  *
  * @since 1.0.0
  */
@@ -154,7 +154,7 @@
 /**
  * @brief Reallocation macro.
  *
- * If this macro is redefined, RS_MALLOC() and RS_FREE() must be aswell.
+ * If this macro is redefined, RS_MALLOC() and RS_FREE() must be as well.
  *
  * @since 1.0.0
  */
@@ -163,7 +163,7 @@
 /**
  * @brief Deallocation macro.
  *
- * If this macro is redefined, RS_MALLOC() and RS_REALLOC() must be aswell.
+ * If this macro is redefined, RS_MALLOC() and RS_REALLOC() must be as well.
  *
  * @since 1.0.0
  */
