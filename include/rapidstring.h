@@ -31,7 +31,7 @@
  *
  * 6. HEAP OPERATIONS
  * - Declarations:	line 1068
- * - Definitions:	line 1514
+ * - Definitions:	line 1512
  */
 
 /**
@@ -1410,7 +1410,6 @@ RS_API void rs_stack_erase(rapidstring *s, size_t index, size_t n)
 	const size_t total = index + n;
 	const size_t stack_len = rs_stack_len(s);
 
-	assert(rs_is_stack(s));
 	assert(index <= stack_len);
 	assert(n <= stack_len - index);
 
@@ -1424,7 +1423,6 @@ RS_API void rs_heap_erase(rapidstring *s, size_t index, size_t n)
 	const size_t total = index + n;
 	const size_t heap_len = rs_heap_len(s);
 
-	assert(rs_is_heap(s));
 	assert(index <= heap_len);
 	assert(n <= heap_len - index);
 
