@@ -990,7 +990,7 @@ RS_API void rs_clear(rapidstring *s);
 /**
  * @brief Resizes a stack string.
  *
- * @param[out] s An initialized stack string.
+ * @param[out] s A string.
  * @param[in] n The new size.
  *
  * @warning The new size must be smaller or equal to #RS_STACK_CAPACITY. If this
@@ -1105,7 +1105,7 @@ RS_API void rs_heap_init_g(rapidstring *s, size_t n);
  * @brief Moves a stack string to the heap.
  *
  * @param[in,out] s An initialized stack string.
- * @param[in] n The heap capacity.
+ * @param[in] n The additional capacity.
  *
  * @warning Intended for internal use.
  *
@@ -1119,7 +1119,7 @@ RS_API void rs_stack_to_heap(rapidstring *s, size_t n);
  * @brief Move a stack string to the heap with growth.
  *
  * @param[in,out] s An initialized stack string.
- * @param[in] n The heap capacity.
+ * @param[in] n The additional capacity.
  *
  * @warning Intended for internal use.
  *
