@@ -1251,7 +1251,7 @@ RS_API void rs_cpy_n(rapidstring *s, const char *input, size_t n)
 	if (rs_is_heap(s)) {
 		rs_grow_heap(s, n);
 		rs_heap_cpy_n(s, input, n);
-	} else if (RS_HEAP_LIKELY(n > RS_STACK_CAPACITY)) {
+	} else if (RS_HEAP_LIKELY(n >= RS_STACK_CAPACITY)) {
 		rs_heap_init_g(s, n);
 		rs_heap_cpy_n(s, input, n);
 	} else {
@@ -1352,7 +1352,7 @@ RS_API void rs_stack_cat_n(rapidstring *s, const char *input, size_t n)
 	const size_t stack_len = rs_stack_len(s);
 
 	assert(input != NULL);
-	assert(RS_STACK_CAPACITY >= rs_stack_len(s) + n);
+	assert(RS_STACK_CAPACITY > rs_stack_len(s) + n);
 
 	memcpy(s->stack.buffer + stack_len, input, n);
 	rs_stack_resize(s, stack_len + n);
@@ -1380,7 +1380,7 @@ RS_API void rs_cat_n(rapidstring *s, const char *input, size_t n)
 	if (rs_is_heap(s)) {
 		rs_grow_heap(s, rs_heap_len(s) + n);
 		rs_heap_cat_n(s, input, n);
-	} else if (RS_HEAP_LIKELY(s->stack.left < n)) {
+	} else if (RS_HEAP_LIKELY(s->stack.left <= n)) {
 		rs_stack_to_heap_g(s, n);
 		rs_heap_cat_n(s, input, n);
 	} else {
@@ -1460,7 +1460,7 @@ RS_API void rs_clear(rapidstring *s)
 RS_API void rs_stack_resize(rapidstring *s, size_t n)
 {
 	assert(s != NULL);
-	assert(RS_STACK_CAPACITY >= n);
+	assert(RS_STACK_CAPACITY > n);
 
 	s->stack.buffer[n] = '\0';
 	s->stack.left = (unsigned char)(RS_STACK_CAPACITY - n);
@@ -1477,7 +1477,7 @@ RS_API void rs_heap_resize(rapidstring *s, size_t n)
 
 RS_API void rs_resize(rapidstring *s, size_t n)
 {
-	if (RS_HEAP_LIKELY(n > RS_STACK_CAPACITY)) {
+	if (RS_HEAP_LIKELY(n >= RS_STACK_CAPACITY)) {
 		if (rs_is_heap(s))
 			rs_reserve(s, n);
 		else
